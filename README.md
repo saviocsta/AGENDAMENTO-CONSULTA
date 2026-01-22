@@ -74,7 +74,7 @@ POST /auth/register
   "tipo": "administrador"
 }
 
-Login do profissional
+Login do profissional (para pegar o token)
 
 POST /auth/login
 
