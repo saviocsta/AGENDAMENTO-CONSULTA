@@ -1,24 +1,27 @@
 AGENDAMENTO DE CONSULTAS
-Este é um projeto de agendamento de consultas para prova final utilizando AdonisJS.
+
+Este é um projeto de agendamento de consultas desenvolvido para a prova final utilizando AdonisJS.
 
 Pré-requisitos
 
 Node.js
-NPM (geralmente vem com o Node.js)
-Um banco de dados PostgreSQL em execução.
 
+NPM (geralmente já vem com o Node.js)
 
+Banco de dados PostgreSQL em execução
 
 Tecnologias Utilizadas
 
 Node.js
+
 AdonisJS
-Postgres
+
+PostgreSQL
+
 TypeScript
 
-INSTRUÇÔES DE EXECUÇÃO DO PROJETO
-
-Clone o repositório
+Instruções de Execução do Projeto
+Clonar o repositório
 git clone <URL_DO_REPOSITORIO>
 cd agendamento
 
@@ -32,15 +35,18 @@ Iniciar o servidor
 node ace serve --watch
 
 Autenticação
+
 A autenticação é realizada através de token de acesso.
+
 Após o login, o token deve ser enviado no header das requisições protegidas:
+
 Authorization: Bearer TOKEN
 
-
-Rotas implementadas
-
+Rotas Implementadas
 Cadastrar usuários
+
 POST /auth/register
+
 {
   "nome": "Admin",
   "email": "admin@ifma.com",
@@ -48,17 +54,19 @@ POST /auth/register
   "tipo": "paciente"
 }
 
+Login de usuários
 
-login de usuários
 POST /auth/login
+
 {
   "email": "admin@ifma.com",
-  "password": "123456",
+  "password": "123456"
 }
 
-
 Cadastrar profissional
+
 POST /auth/register
+
 {
   "nome": "AdminPRO",
   "email": "adminPRO@ifma.com",
@@ -66,39 +74,56 @@ POST /auth/register
   "tipo": "administrador"
 }
 
-
-
 Login do profissional
+
 POST /auth/login
+
 {
   "email": "admin@ifma.com",
-  "password": "123456",
+  "password": "123456"
 }
 
+Cadastro da especialidade
 
+(necessário token do profissional)
 
-Cadastro da especialidade (Precisa do token do profissional)
 POST /profissional
+
+Header
+
+Authorization: Bearer TOKEN
+
 {
   "nome": "Dr João",
   "especialidade": "Cardiologia"
 }
-Authorization: Bearer TOKEN
 
+Listar profissionais
 
-Listar profissional (Precisa do token do profissional)
+(necessário token do profissional)
+
 GET /profissional
+
+Header
+
 Authorization: Bearer TOKEN
 
-Cadastrar disponibilidade (Precisa do token do profissional)
+Cadastrar disponibilidade
+
+(necessário token do profissional)
+
 POST /disponibilidades
+
 {
   "profissional_id": 1,
   "dia_da_semana": 1,
   "hora_inicio": "08:00",
   "hora_fim": "12:00"
 }
+
+
 Dias da semana
+
 0 - Domingo
 1 - Segunda
 2 - Terça
@@ -108,29 +133,43 @@ Dias da semana
 6 - Sábado
 
 
+Header
+
 Authorization: Bearer TOKEN
 
-Agendar consulta (Precisa do token do paciente)
+Agendar consulta
+
+(necessário token do paciente)
+
 POST /consultas
+
 {
   "profissional_id": 1,
   "data": "2026-01-22",
   "hora": "09:00"
 }
+
+
+Header
+
 Authorization: Bearer TOKEN
 
-Listar consultas do paciente (Precisa do token do paciente)
+Listar consultas do paciente
+
+(necessário token do paciente)
+
 GET /consultas
 
+Header
+
 Authorization: Bearer TOKEN
 
-Cancelar consulta (Precisa do token do paciente)
+Cancelar consulta
+
+(necessário token do paciente)
+
 DELETE /consultas/:id
 
+Header
+
 Authorization: Bearer TOKEN
-
-
-
-
-
-
